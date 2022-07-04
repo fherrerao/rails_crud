@@ -1,0 +1,5 @@
+<%= render @product %>
+<div>
+  <%= link_to 'Edit product', edit_store_product_path(1, @product) %>
+  <%= button_to 'Delete product', store_product_path(1, @product), method: :delete%>
+</div>

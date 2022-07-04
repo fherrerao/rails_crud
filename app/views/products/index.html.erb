@@ -1,0 +1,11 @@
+<%= "Hello products of Globant" %>
+  <% @products.each do |product|%>  
+  <div>
+    <%= product.name %>
+    <%= product.value %>
+    <p> <%= link_to 'Show this product', store_product_path(1,product) %> </p>    
+  </div>
+  <% end %>
+<div>
+  <%= link_to "New Product", new_store_product_path(1) %>
+</div>

@@ -1,0 +1,11 @@
+<%= form_with(model: product, url: store_products_path) do |form| %>
+  <div>
+    <%= form.text_field :name, placeholder: 'Name' %>
+  </div>
+  <div>
+    <%= form.text_field :value, placeholder: 'Price' %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
