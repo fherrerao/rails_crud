@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_products, only: [:show, :destroy, :edit, :update]
+  before_action :set_store, only: [:create, :update, :destroy]
   before_action :authenticate_user!
 
   def index
@@ -18,7 +19,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(products_params)
-    @product.store_id = 1
+    @product.store_id = @store.id
+    @product.user_id = current_user.id
     pp @product
     
     if @product.save      
@@ -46,10 +48,14 @@ class ProductsController < ApplicationController
 
   private
   def set_products
-    @product = Product.find(params[:id])    
+    @product = Product.find(params[:store_id])
+  end
+
+  def set_store    
+    @store = Product.find(params[:store_id])  
   end
 
   def products_params
-    params.require(:product).permit(:name, :value)
+    params.require(:product).permit(:name, :value, :store_id)
   end
 end
